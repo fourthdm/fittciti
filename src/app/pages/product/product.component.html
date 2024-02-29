@@ -1,0 +1,66 @@
+<div class="main"><br><br><br><br>
+    <div class="container"><br>
+        <h1 style="text-align: center;">Products for Selling</h1> <br>
+        <br>
+        <div class="row">
+            <!-- <div class="col-md-3">
+                <label for="batch_date">Category Name : <br>
+                    <select name="category_id" id="category_id" [(ngModel)]="Category_id" class="form-select"
+                        aria-label="Multiple select example">
+                        <option *ngFor="let c of c " [value]="c.Category_id">{{c.Category_Name}}</option>
+                    </select>
+                </label>
+
+                <label for="batch_date">Brand Name : <br>
+                    <select name="brand_id" id="brand_id" [(ngModel)]="Brand_id" class="form-select"
+                        aria-label="Multiple select example">
+                        <option selected> All Brands</option>
+                        <option *ngFor="let b of b " [value]="b.Brand_id">{{b.Brand_Name}}</option>
+                    </select>
+                </label>
+
+                <br><br>
+                <label>
+                    <button class="btn btn-outline-success" (click)="getallproduct()">Go</button>
+                </label>
+            </div> -->
+
+            <div class="col-md-9">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6"
+                            *ngFor="let p of productList| paginate: { itemsPerPage: 6, currentPage: pro }, let i=index ">
+                            <div class="container">
+                                <div class="card">
+                                    <div class="">
+                                        <!-- <div class="text-end">
+                                            <i class="fa-solid fa-heart fa-xl" [ngStyle]="{'color':liked ? 'red':''}"
+                                                (click)="togglelike(id)"></i>
+                                        </div> -->
+                                        <!-- <img src="/assets/product/new/1.jpg" alt="" (click)="views()" [routerLink]="['/viewproduct']"> -->
+                                        <img  src="https://fourthdm-web-data.s3.ap-south-1.amazonaws.com/#1707209867566.jpg" [routerLink]="['/viewproduct']">
+                                        <div class="card-body">
+                                            <p>{{p.Product_Name}} <br> <span>{{p.Weight}}</span></p>
+                                            <p>Rs <s style="color: red;">{{p.Price}} </s> <span
+                                                    style="margin-left: 5%;">
+                                                    <b>{{p.discount}}%</b></span> </p>
+                                            <p>Rs {{p.pricewithdiscount}}</p>
+                                            <button class="btn btn-secondary" (click)="addToCart(p)">
+                                                <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                                Add To Cart</button>
+                                        </div>
+                                    </div>
+                                </div> <br>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <pagination-controls (pageChange)="pro = $event"></pagination-controls>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
