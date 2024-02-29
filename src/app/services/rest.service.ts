@@ -8,10 +8,10 @@ export class RestService {
   product: any[] = [];
   constructor(private http: HttpClient) { }
 
-  url='http://localhost:5000'
+  url = 'http://localhost:5000'
 
-  products(){
-    return this.http.get(this.url+'/Product');
+  products() {
+    return this.http.get(this.url + '/Product');
   }
 
 }

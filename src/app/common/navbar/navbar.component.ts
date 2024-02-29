@@ -13,8 +13,9 @@ export class NavbarComponent implements OnInit {
   constructor(private _cart: CartService) { }
 
   ngOnInit(): void {
-    
-    this._cart.getProducts().subscribe(resp => {
+
+   
+    this._cart.getProducts().subscribe(resp=>{
       this.totalItem = resp.length;
     })
   }
