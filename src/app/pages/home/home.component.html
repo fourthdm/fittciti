@@ -228,10 +228,11 @@
                                             <img [src]="p.image" width="100%" [routerLink]="['/viewproduct']">
                                             <div class="card-body">
                                                 <!-- <p>{{p.Product_Name}} <br> <span>{{p.Weight}}</span></p> -->
-
+                                                <img [src]="p.image" alt="">
                                                 <p style="font-size: 13px;"><b>{{p.Product_Name}}</b></p>
                                                 <p style="font-size: small;">{{p.Weight}} SER</p>
-                                                <p style="font-size: small;">&#8377; {{p.Price}}</p>
+                                                <p style="font-size: small;">&#8377;<s style="color: red;"> {{p.Price}}</s></p>
+                                                <p style="font-size: small;">&#8377; {{p.pricewithdiscount}}</p>
                                                 <!-- <p>Rs {{p.Price}} </p> -->
                                                 <button class="btn btn-secondary"><i
                                                         class="fa-solid fa-cart-plus fa-lg"  (click)="addToCart(p)"></i>

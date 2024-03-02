@@ -12,10 +12,27 @@ export class NavbarComponent implements OnInit {
 
   constructor(private _cart: CartService) { }
 
-  ngOnInit(): void {
 
-   
-    this._cart.getProducts().subscribe(resp=>{
+  scrolltop = document.getElementById('scrolltop');
+  rootelement = document.documentElement;
+
+  scroll() {
+    this.rootelement.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
+  closeNavbar() {
+    // Close the navbar by toggling the collapse class
+    const navbarToggler = document.querySelector('.navbar-toggler') as HTMLElement;
+    if (navbarToggler) {
+      navbarToggler.click();
+    }
+  }
+
+  ngOnInit(): void {
+    this._cart.getProducts().subscribe(resp => {
       this.totalItem = resp.length;
     })
   }

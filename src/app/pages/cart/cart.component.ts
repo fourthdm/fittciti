@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { RestService } from 'src/app/services/rest.service';
 
 declare var Razorpay: any;
 
@@ -14,7 +16,7 @@ export class CartComponent implements OnInit {
   public grandTotal !: number;
   public T !: any;
 
-  constructor(private _cart: CartService) { }
+  constructor(private _cart: CartService, private _route :Router ,private _rest:RestService ) { }
 
   ngOnInit(): void {
 
@@ -33,12 +35,35 @@ export class CartComponent implements OnInit {
     //   console.log(err)
     // })
   }
+
+
+  // delete(productId: number){
+  //   let index = this.products.map((e:any)=> e.id).indexOf(productId);
+  //   if(index !== -1){
+  //     this._rest.deleteproductfromcart(productId).then(()=>{
+  //       this.products.splice(index, 1);
+  //       alert("Item removed from cart");
+  //     }).catch((error: any)=>{
+  //       console.log("Error", error);
+  //     });
+      
+  //   }else{
+  //     alert("The item was not found in the cart")
+  //   }
+    
+  // }
+
+  deletecartitem(){
+    
+  }
+
   removeItem(item: any) {
     this._cart.removeCartItem(item)
   }
 
   emptycart() {
     this._cart.removeAllCart();
+    this._route.navigate(['/product']);
   }
 
   paynow() {
@@ -62,7 +87,7 @@ export class CartComponent implements OnInit {
       modal: {
         ondismiss: () => {
           console.log('dismissed')
-        }
+        }      
       }
     }
     const successCallback = (paymentid: any) => {

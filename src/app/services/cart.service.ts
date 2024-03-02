@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RestService } from './rest.service';
+import { HttpClient } from '@angular/common/http';
 
 declare var Razorpay: any;
 
@@ -12,7 +13,7 @@ export class CartService {
   public cartItemList: any = [];
   public productList = new BehaviorSubject<any>([]);
 
-  constructor(private _rest: RestService) { }
+  constructor(private _rest: RestService, private _http: HttpClient) { }
 
   getProducts() {
     return this.productList.asObservable();
@@ -63,13 +64,24 @@ export class CartService {
     this.productList.next(this.cartItemList)
   }
 
+  removeproduct(product: any) {
+    this._rest.checktoken();
+    this._rest.deleteproductfromcart(product.Product_id).subscribe((data: any) => {
+      
+    })
+
+    this.cartItemList.map((a: any, index: any) => {
+      if (product.id === a.id) {
+        this.cartItemList.splice(index, 1);
+      }
+    })
+    this.productList.next(this.cartItemList)
+  }
+
   // empty cart at a time
   removeAllCart() {
     this.cartItemList = [];
     this.productList.next(this.cartItemList);
   }
-
-
-
 
 }
