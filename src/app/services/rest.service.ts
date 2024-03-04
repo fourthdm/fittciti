@@ -19,6 +19,10 @@ export class RestService {
     return this.http.get(this.url + '/Product');
   }
 
+  productwithmain() {
+    return this.http.get(this.url + '/Productwithmainimage');
+  }
+
   decodeToken() {
     // this.report = jwt_decode(this.token);
     console.log(this.report);
@@ -36,7 +40,7 @@ export class RestService {
   deleteproductfromcart(Product_id: number) {
     this.checktoken();
     const headers = new HttpHeaders({ 'x-access-token': this.token })
-    return this.http.delete(this.url + '/DeletebyProduct/' + Product_id ,{headers});
+    return this.http.delete(this.url + '/DeletebyProduct/' + Product_id, { headers });
   }
 
 }

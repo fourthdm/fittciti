@@ -13,6 +13,8 @@ import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NavbarComponent } from './common/navbar/navbar.component';
 import { ViewproductComponent } from './pages/viewproduct/viewproduct.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+
 
 @NgModule({
   declarations: [
@@ -30,8 +32,8 @@ import { ViewproductComponent } from './pages/viewproduct/viewproduct.component'
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
-    NgxPaginationModule
-
+    NgxPaginationModule,
+    CarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
