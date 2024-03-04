@@ -37,9 +37,7 @@ export class CartService {
   // get totl price
   getTotalPrice(): number {
     let grandTotal = 0;
-
     this.cartItemList.map((a: any) => {
-
       grandTotal += a.pricewithdiscount;
     })
     return grandTotal;
@@ -50,7 +48,6 @@ export class CartService {
     this.cartItemList.map((a: any) => {
       T += a.Price;
     })
-
     return T;
   }
 
@@ -67,7 +64,7 @@ export class CartService {
   removeproduct(product: any) {
     this._rest.checktoken();
     this._rest.deleteproductfromcart(product.Product_id).subscribe((data: any) => {
-      
+
     })
 
     this.cartItemList.map((a: any, index: any) => {

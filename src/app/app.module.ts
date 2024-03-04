@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NavbarComponent } from './common/navbar/navbar.component';
+import { ViewproductComponent } from './pages/viewproduct/viewproduct.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NavbarComponent } from './common/navbar/navbar.component';
     ProductComponent,
     CartComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    ViewproductComponent
   ],
   imports: [
     BrowserModule,
