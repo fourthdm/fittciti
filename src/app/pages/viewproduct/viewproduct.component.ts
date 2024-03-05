@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { RestService } from 'src/app/services/rest.service';
 
@@ -10,15 +11,16 @@ import { RestService } from 'src/app/services/rest.service';
 export class ViewproductComponent implements OnInit {
   productList: any[] = [];
   pro: any;
-  constructor(private _rest: RestService, private _cart: CartService) { }
+  constructor(private _rest: RestService, private _cart: CartService, private _activeroute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getproduct();
   }
 
   getproduct() {
-
-    this._rest.productwithmain().subscribe((data: any) => {
+    const id = this._activeroute.snapshot.paramMap.get('id');
+    console.log(id);
+    id && this._rest.productwithmain(id).subscribe((data: any) => {
       this.productList = data.data;
     }, (err: any) => {
       console.log(err);
@@ -29,10 +31,8 @@ export class ViewproductComponent implements OnInit {
     });
   }
 
-
   addToCart(product: any) {
     this._cart.addtoCart(product);
   }
-
 
 }

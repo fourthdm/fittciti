@@ -14,6 +14,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NavbarComponent } from './common/navbar/navbar.component';
 import { ViewproductComponent } from './pages/viewproduct/viewproduct.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { LoginComponent } from './common/login/login.component';
+import { EnquiryComponent } from './common/enquiry/enquiry.component';
+import { RegisterComponent } from './common/register/register.component';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     CartComponent,
     HomeComponent,
     NavbarComponent,
-    ViewproductComponent
+    ViewproductComponent,
+    LoginComponent,
+    EnquiryComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

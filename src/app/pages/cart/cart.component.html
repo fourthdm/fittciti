@@ -29,12 +29,13 @@
           <td colspan="1"></td>
           <td> <button (click)="emptycart()" class="btn btn-danger">Empty Cart</button> </td>
           <td> <button [routerLink]="['/product']" class="btn btn-primary">Shop More</button> </td>
-          <p>You Save your <b> {{Savers}}</b> Rupee</p>
+
           <!-- <td> <button class="btn btn-success">Checkout</button> </td> -->
-          <td><strong>Total : ${{T}}</strong></td>
+          <td><strong>Total : &#8377; {{T}}</strong></td>
           <!-- <button (click)="paynow()">Pay <span><strong>Total Price With Discount : ${{grandTotal}}</strong></span> </button> -->
-          <td><strong>Total Price With Discount : ${{grandTotal}} <span><button class="btn btn-primary"
+          <td><strong>Total Price With Discount : &#8377; {{grandTotal}} <span><button class="btn btn-primary"
                   (click)="paynow()">Pay</button></span></strong></td>
+          <p>You Save your<b> &#8377; {{Savers}} </b></p>
         </tr>
 
       </tbody>

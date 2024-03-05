@@ -39,7 +39,7 @@
                                         </div> -->
                                         <!-- <img src="/assets/product/new/1.jpg" alt="" (click)="views()" [routerLink]="['/viewproduct']"> -->
                                         <!-- <img  style="width: 100%;" src="https://fourthdm-web-data.s3.ap-south-1.amazonaws.com/uploads/1708505326487.jpg" [routerLink]="['/viewproduct']"> -->
-                                        <a href="" [routerLink]="['/viewproduct']"> <img [src]="p.image"
+                                        <a href="" [routerLink]="['/viewproduct',p.id]"> <img [src]="p.image"
                                                 style="width: 100%;" alt=""></a>
                                         <div class="card-body">
                                             <p>{{p.Product_Name}} <br> <span>{{p.Weight}}</span></p>

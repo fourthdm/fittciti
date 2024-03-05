@@ -225,17 +225,20 @@
                                                     [ngStyle]="{'color':liked ? 'red':''}"
                                                     (click)="toggleliked(this.Product_id)"></i>
                                             </div> -->
-                                            <img [src]="p.image" width="100%" [routerLink]="['/viewproduct']">
+                                            <a href="" [routerLink]="['/viewproduct',p.id]"> <img [src]="p.image"
+                                                style="width: 100%;" alt=""></a>
                                             <div class="card-body">
                                                 <!-- <p>{{p.Product_Name}} <br> <span>{{p.Weight}}</span></p> -->
-                                                <img [src]="p.image" alt="">
+                                                <!-- <img [src]="p.image" alt=""> -->
                                                 <p style="font-size: 13px;"><b>{{p.Product_Name}}</b></p>
-                                                <p style="font-size: small;">{{p.Weight}} SER</p>
-                                                <p style="font-size: small;">&#8377;<s style="color: red;"> {{p.Price}}</s></p>
+                                                <p style="font-size: small;">{{p.Weight}} <span
+                                                        style="float: right;">&#8377;<s style="color: red;">
+                                                            {{p.Price}}</s></span></p>
+                                                <!-- <p style="font-size: small;"></p> -->
                                                 <p style="font-size: small;">&#8377; {{p.pricewithdiscount}}</p>
                                                 <!-- <p>Rs {{p.Price}} </p> -->
-                                                <button class="btn btn-secondary"><i
-                                                        class="fa-solid fa-cart-plus fa-lg"  (click)="addToCart(p)"></i>
+                                                <button class="btn btn-secondary"><i class="fa-solid fa-cart-plus fa-lg"
+                                                        (click)="addToCart(p)"></i>
                                                     Add To Cart</button>
                                             </div>
                                         </div>

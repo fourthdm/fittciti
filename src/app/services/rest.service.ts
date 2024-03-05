@@ -19,8 +19,12 @@ export class RestService {
     return this.http.get(this.url + '/Product');
   }
 
-  productwithmain() {
-    return this.http.get(this.url + '/Productwithmainimage');
+  homeproduct() {
+    return this.http.get(this.url + '/homeProduct');
+  }
+
+  productwithmain(id: string) {
+    return this.http.get(this.url + '/Productwithimages/' + id);
   }
 
   decodeToken() {

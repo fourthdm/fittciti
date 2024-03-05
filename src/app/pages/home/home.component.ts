@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   constructor(private _rest: RestService, private _cart: CartService) { }
 
   ngOnInit(): void {
-    this._rest.products().subscribe((data: any) => {
+    this._rest.homeproduct().subscribe((data: any) => {
       this.productList = data.data;
     }, (err: any) => {
       console.log(err);
@@ -25,13 +25,9 @@ export class HomeComponent implements OnInit {
     this.productList.forEach((a: any) => {
       Object.assign(a, { quantity: 1, total: a.pricewithdiscount });
     });
-
   }
 
   addToCart(product: any) {
     this._cart.addtoCart(product);
   }
-
-
-
 }
