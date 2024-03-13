@@ -50,7 +50,7 @@ export class CartService {
     })
     return T;
   }
-
+  
   // remove single item
   removeCartItem(product: any) {
     this.cartItemList.map((a: any, index: any) => {

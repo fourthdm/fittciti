@@ -20,7 +20,6 @@ export class ProductComponent implements OnInit {
   }
 
   getproduct() {
-
     this._rest.products().subscribe((data: any) => {
       this.productList = data.data;
     }, (err: any) => {
@@ -31,7 +30,7 @@ export class ProductComponent implements OnInit {
       Object.assign(a, {quantity:1, total:a.pricewithdiscount});
     });
   }
-
+ 
 
   addToCart(product:any){
     this._cart.addtoCart(product);
