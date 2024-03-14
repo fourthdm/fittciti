@@ -17,6 +17,16 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { LoginComponent } from './common/login/login.component';
 import { EnquiryComponent } from './common/enquiry/enquiry.component';
 import { RegisterComponent } from './common/register/register.component';
+import { BsnComponent } from './brand/bsn/bsn.component';
+import { GncComponent } from './brand/gnc/gnc.component';
+import { In2Component } from './brand/in2/in2.component';
+import { DymatizeComponent } from './brand/dymatize/dymatize.component';
+import { MbComponent } from './brand/mb/mb.component';
+import { MuscletechComponent } from './brand/muscletech/muscletech.component';
+import { Healthinnvo8Component } from './brand/healthinnvo8/healthinnvo8.component';
+import { InsanelabzComponent } from './brand/insanelabz/insanelabz.component';
+import { RcComponent } from './brand/rc/rc.component';
+import { OnComponent } from './brand/on/on.component';
 
 
 @NgModule({
@@ -29,7 +39,17 @@ import { RegisterComponent } from './common/register/register.component';
     ViewproductComponent,
     LoginComponent,
     EnquiryComponent,
-    RegisterComponent
+    RegisterComponent,
+    BsnComponent,
+    GncComponent,
+    In2Component,
+    DymatizeComponent,
+    MbComponent,
+    MuscletechComponent,
+    Healthinnvo8Component,
+    InsanelabzComponent,
+    RcComponent,
+    OnComponent
   ],
   imports: [
     BrowserModule,

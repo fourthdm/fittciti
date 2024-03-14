@@ -15,6 +15,14 @@ export class RestService {
 
   url = 'http://localhost:5000'
 
+  category() {
+    return this.http.get(this.url + '/Allcategory')
+  }
+
+  brand() {
+    return this.http.get(this.url + '/Allbrand');
+  }
+
   products() {
     return this.http.get(this.url + '/Product');
   }
@@ -25,6 +33,14 @@ export class RestService {
 
   productwithmain(id: string) {
     return this.http.get(this.url + '/Productwithimages/' + id);
+  }
+
+  bycategoryandbrand(data: any) {
+    return this.http.post(this.url + '/Productbycategoryandbrand', data);
+  }
+
+  bybrandid(Brand_id: number) {
+    return this.http.get(this.url + '/Productbybrand/' + Brand_id);
   }
 
   decodeToken() {
@@ -45,6 +61,17 @@ export class RestService {
     this.checktoken();
     const headers = new HttpHeaders({ 'x-access-token': this.token })
     return this.http.delete(this.url + '/DeletebyProduct/' + Product_id, { headers });
+  }
+
+
+  // Addtowishlist(Product_id: number) {
+  //   this.checktoken();
+  //   const headers = new HttpHeaders({ 'x-access-token': this.token })
+  //   return this.http.post(this.url + '/Addwishlist', Product_id, { headers });
+  // }
+
+  addwish(Product_id: number) {
+    return this.http.post(this.url + '/wish', Product_id);
   }
 
 }

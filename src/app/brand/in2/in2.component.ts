@@ -1,15 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RestService } from 'src/app/services/rest.service';
-import { CartComponent } from '../cart/cart.component';
+import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { RestService } from 'src/app/services/rest.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-in2',
+  templateUrl: './in2.component.html',
+  styleUrls: ['./in2.component.css']
 })
-export class ProductComponent implements OnInit {
-
+export class In2Component implements OnInit {
   @Input() Category_id: any;
   @Input() Brand_id: any;
   errormessage: string = " ";
@@ -27,12 +26,24 @@ export class ProductComponent implements OnInit {
 
   @Input() index = -1;
 
-  constructor(private _rest: RestService, private _cart: CartService) { }
+  constructor(private _rest: RestService, private _cart: CartService, private _activateroute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getproduct();
     this.getCategory();
+    this.getproduct();
     this.getbrand();
+    this.in2();
+  }
+
+
+  in2() {
+    // const Brand_id = this._activeroute.snapshot.paramMap.get('Brand_id');
+    // console.log(Brand_id);
+    this._rest.bybrandid(6).subscribe((data: any) => {
+      this.productList = data.data;
+    }, (err: any) => {
+      console.log(err);
+    })
   }
 
   getproduct() {

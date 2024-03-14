@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RestService } from 'src/app/services/rest.service';
-import { CartComponent } from '../cart/cart.component';
+import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { RestService } from 'src/app/services/rest.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-healthinnvo8',
+  templateUrl: './healthinnvo8.component.html',
+  styleUrls: ['./healthinnvo8.component.css']
 })
-export class ProductComponent implements OnInit {
+export class Healthinnvo8Component implements OnInit {
 
   @Input() Category_id: any;
   @Input() Brand_id: any;
@@ -27,12 +27,23 @@ export class ProductComponent implements OnInit {
 
   @Input() index = -1;
 
-  constructor(private _rest: RestService, private _cart: CartService) { }
+  constructor(private _rest: RestService, private _cart: CartService, private _activateroute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getproduct();
-    this.getCategory();
     this.getbrand();
+    this.getCategory();
+    this.getproduct();
+    this.Healthinnova();
+  }
+
+  Healthinnova() {
+    // const Brand_id = this._activeroute.snapshot.paramMap.get('Brand_id');
+    // console.log(Brand_id);
+    this._rest.bybrandid(14).subscribe((data: any) => {
+      this.productList = data.data;
+    }, (err: any) => {
+      console.log(err);
+    })
   }
 
   getproduct() {
@@ -111,5 +122,8 @@ export class ProductComponent implements OnInit {
       }
     )
   }
+
+
+
 
 }
