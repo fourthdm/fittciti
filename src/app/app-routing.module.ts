@@ -14,12 +14,24 @@ import { Healthinnvo8Component } from './brand/healthinnvo8/healthinnvo8.compone
 import { OnComponent } from './brand/on/on.component';
 import { RcComponent } from './brand/rc/rc.component';
 import { MbComponent } from './brand/mb/mb.component';
+import { LoginComponent } from './common/login/login.component';
+import { AboutComponent } from './pages/about/about.component';
+import { TestimonialsComponent } from './pages/testimonials/testimonials.component';
+import { EnquiryComponent } from './common/enquiry/enquiry.component';
+import { RegisterComponent } from './common/register/register.component';
+import { OrderComponent } from './common/order/order.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: "full" },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'testimonials', component: TestimonialsComponent },
+  { path: 'contactus', component: EnquiryComponent },
   { path: 'product', component: ProductComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'order', component: OrderComponent },
   { path: 'viewproduct/:id', component: ViewproductComponent },
 
   { path: 'Dymatize', component: DymatizeComponent },

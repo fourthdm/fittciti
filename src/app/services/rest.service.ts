@@ -13,7 +13,19 @@ export class RestService {
   constructor(private http: HttpClient, private _router: Router) { }
   token = ''
 
-  url = 'http://localhost:5000'
+  url = 'http://localhost:5000';
+
+  Login(data: any) {
+    return this.http.post(this.url + '/login', data);
+  }
+
+  Registeration(data: any) {
+    return this.http.post(this.url + '/Registeration', data);
+  }
+
+  enquiry(data: any) {
+    return this.http.post(this.url + '/Contact', data);
+  }
 
   category() {
     return this.http.get(this.url + '/Allcategory')
@@ -25,6 +37,11 @@ export class RestService {
 
   products() {
     return this.http.get(this.url + '/Product');
+  }
+
+  searchProduct(query: string) {
+    return this.http.get(`http://localhost:5000/Product?q= ${query}`);
+    // return this.http.get(this.url + '/Product?q=${query}')
   }
 
   homeproduct() {
@@ -61,6 +78,12 @@ export class RestService {
     this.checktoken();
     const headers = new HttpHeaders({ 'x-access-token': this.token })
     return this.http.delete(this.url + '/DeletebyProduct/' + Product_id, { headers });
+  }
+
+  Getorder() {
+    this.checktoken();
+    const headers = new HttpHeaders({ 'x-access-token': this.token })
+    return this.http.delete(this.url + '/Orders/', { headers });
   }
 
 

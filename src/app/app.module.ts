@@ -27,6 +27,11 @@ import { Healthinnvo8Component } from './brand/healthinnvo8/healthinnvo8.compone
 import { InsanelabzComponent } from './brand/insanelabz/insanelabz.component';
 import { RcComponent } from './brand/rc/rc.component';
 import { OnComponent } from './brand/on/on.component';
+import { FooterComponent } from './common/footer/footer.component';
+import { AboutComponent } from './pages/about/about.component';
+import { TestimonialsComponent } from './pages/testimonials/testimonials.component';
+import { OrderComponent } from './common/order/order.component';
+import { CheckoutComponent } from './cmmon/checkout/checkout.component';
 
 
 @NgModule({
@@ -49,7 +54,12 @@ import { OnComponent } from './brand/on/on.component';
     Healthinnvo8Component,
     InsanelabzComponent,
     RcComponent,
-    OnComponent
+    OnComponent,
+    FooterComponent,
+    AboutComponent,
+    TestimonialsComponent,
+    OrderComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

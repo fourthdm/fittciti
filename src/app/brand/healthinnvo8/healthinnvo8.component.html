@@ -34,6 +34,9 @@
                             <div class="container">
                                 <div class="card">
                                     <div class="">
+                                        <p *ngIf="this.errormessage">
+                                           
+                                        </p>
                                         <div class="text-end">
                                             <i class="fa-solid fa-heart fa-xl" [ngStyle]="{'color':liked ? 'blue' : ''}"
                                                 (click)="togglelikes(this.index)"></i>

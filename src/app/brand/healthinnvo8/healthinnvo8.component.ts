@@ -114,6 +114,7 @@ export class Healthinnvo8Component implements OnInit {
       } else {
         console.log("Data not found in the table.");
         this.errormessage = "Data not found in the table."; // Set errorMessage
+        alert(this.errormessage);                           // Show
       }
     },
       (err: any) => {

@@ -67,14 +67,27 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" (click)="scroll()" [routerLink]="['/contact']">Contact </a>
+          <a class="nav-link" (click)="scroll()" [routerLink]="['/contactus']">Contact </a>
         </li>
       </ul>
 
-      <div class="d-flex" role="">
+      <div *ngIf="menutype!=='seller'" class="nav-search">
+        <input type="text" #searchInput (keyup)="searchProduct($event)" (blur)="hideSearch()"
+          placeholder="Search Products" />
+        <button (click)="submitSearch(searchInput.value)">Search</button>
+        <ul class="suggested-search" *ngIf="searchResult">
+          <li *ngFor="let item of searchResult">
+            <a (mousedown)="redirectToDetails(item.id)">{{item.name}}</a>
+          </li>
+        </ul>
+      </div>
 
 
-        <div class="dropdown">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" (keyup)="($event)" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+        <div class="dropdown" style="margin-left: 6px;">
           <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             Actions
@@ -84,10 +97,29 @@
                 [routerLink]="['/register']">Register</button></li>
             <li><button class="dropdown-item  btn btn-info btn-sm" type="button" [routerLink]="['/login']">Log
                 in</button></li>
-            <!-- <li><button class="dropdown-item  btn btn-info btn-sm" type="button" (click)="logout()">Log
-                                Out</button></li> -->
+            <li><button class="dropdown-item  btn btn-info btn-sm" type="button" (click)="logout()">Log
+                Out</button></li>
           </ul>
+
         </div>
+      </form>
+
+
+      <div class="d-flex" role="">
+        <!-- <div class="dropdown">
+          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Actions
+          </button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item  btn btn-info btn-sm" type="button"
+                [routerLink]="['/register']">Register</button></li>
+            <li><button class="dropdown-item  btn btn-info btn-sm" type="button" [routerLink]="['/login']">Log
+                in</button></li>
+            <li><button class="dropdown-item  btn btn-info btn-sm" type="button" (click)="logout()">Log
+                Out</button></li>
+          </ul>
+        </div> -->
 
         <!-- <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['/register']">Register</button>
                 <button type="button" class=" btn btn-info btn-sm" [routerLink]="['/login']"><b>Login</b></button>

@@ -12,6 +12,9 @@ export class ProductComponent implements OnInit {
 
   @Input() Category_id: any;
   @Input() Brand_id: any;
+
+  @Input() selectedBrand: any;
+
   errormessage: string = " ";
 
   @Input() liked: boolean = false;
@@ -103,6 +106,7 @@ export class ProductComponent implements OnInit {
       } else {
         console.log("Data not found in the table.");
         this.errormessage = "Data not found in the table."; // Set errorMessage
+        alert(this.errormessage);                           // Show
       }
     },
       (err: any) => {
