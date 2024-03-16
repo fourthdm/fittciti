@@ -20,6 +20,7 @@ import { TestimonialsComponent } from './pages/testimonials/testimonials.compone
 import { EnquiryComponent } from './common/enquiry/enquiry.component';
 import { RegisterComponent } from './common/register/register.component';
 import { OrderComponent } from './common/order/order.component';
+import { CheckoutComponent } from './cmmon/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: "full" },
@@ -32,8 +33,10 @@ const routes: Routes = [
   { path: 'product', component: ProductComponent },
   { path: 'cart', component: CartComponent },
   { path: 'order', component: OrderComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'viewproduct/:id', component: ViewproductComponent },
 
+  
   { path: 'Dymatize', component: DymatizeComponent },
   { path: 'In2', component: In2Component },
   { path: 'Insanelabz', component: InsanelabzComponent },
