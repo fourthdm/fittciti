@@ -38,10 +38,8 @@
                                             <i class="fa-solid fa-heart fa-xl" [ngStyle]="{'color':liked ? 'blue' : ''}"
                                                 (click)="togglelikes(this.index)"></i>
                                         </div>
-
                                         <a href="" [routerLink]="['/viewproduct',p.id]"> <img [src]="p.image"
                                                 style="width: 100%;" alt=""></a>
-
                                         <div class="card-body">
                                             <p>{{p.Product_Name}} <br> <span>{{p.Weight}}</span></p>
                                             <p>Rs <s style="color: red;">{{p.Price}} </s> <span

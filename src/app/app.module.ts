@@ -32,6 +32,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { TestimonialsComponent } from './pages/testimonials/testimonials.component';
 import { OrderComponent } from './common/order/order.component';
 import { CheckoutComponent } from './cmmon/checkout/checkout.component';
+import { NavComponent } from './cmmon/nav/nav.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { CheckoutComponent } from './cmmon/checkout/checkout.component';
     AboutComponent,
     TestimonialsComponent,
     OrderComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

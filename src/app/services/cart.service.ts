@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RestService } from './rest.service';
 import { HttpClient } from '@angular/common/http';
+import { StateService } from './state.service';
+import { Router } from '@angular/router';
 
 declare var Razorpay: any;
 
@@ -13,7 +15,8 @@ export class CartService {
   public cartItemList: any = [];
   public productList = new BehaviorSubject<any>([]);
 
-  constructor(private _rest: RestService, private _http: HttpClient) { }
+  constructor(private _rest: RestService, private _http: HttpClient,
+    private _route: Router, private _state: StateService) { }
 
   getProducts() {
     return this.productList.asObservable();
@@ -34,6 +37,22 @@ export class CartService {
     console.log(this.cartItemList);
   }
 
+  add(product: any) {
+    if (localStorage.getItem('token')) {
+      this._rest.addtoCart(product).subscribe((data: any) => {
+        console.log(data);
+        this.cartItemList.push(data);
+        this.cartItemList = data.data
+      }, (err: any) => {
+        console.log(err);
+      })
+    }
+    else {
+      this._route.navigate(['/login']);
+    }
+  }
+
+
   // get totl price
   getTotalPrice(): number {
     let grandTotal = 0;
@@ -43,6 +62,15 @@ export class CartService {
     return grandTotal;
   }
 
+  getFinaltotalPrice(): number {
+    let finalTotal = 0;
+    this.cartItemList.map((a: any) => {
+      finalTotal += a.Total;
+    })
+    return finalTotal;
+  }
+
+
   Gettotal(): number {
     let T = 0;
     this.cartItemList.map((a: any) => {
@@ -50,7 +78,7 @@ export class CartService {
     })
     return T;
   }
-  
+
   // remove single item
   removeCartItem(product: any) {
     this.cartItemList.map((a: any, index: any) => {
@@ -62,9 +90,8 @@ export class CartService {
   }
 
   removeproduct(product: any) {
-    this._rest.checktoken();
+    this._state.checktoken();
     this._rest.deleteproductfromcart(product.Product_id).subscribe((data: any) => {
-
     })
 
     this.cartItemList.map((a: any, index: any) => {

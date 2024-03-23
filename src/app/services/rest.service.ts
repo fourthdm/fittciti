@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { StateService } from './state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,11 @@ export class RestService {
 
   product: any[] = [];
   report: any[] = [];
+  cartData = new EventEmitter<any[] | []>();
 
-  constructor(private http: HttpClient, private _router: Router) { }
+  constructor(private http: HttpClient, private _router: Router, private _state: StateService) { }
   token = ''
+  // cartData:any[]=[];
 
   url = 'http://localhost:5000';
 
@@ -64,37 +67,51 @@ export class RestService {
     // this.report = jwt_decode(this.token);
     console.log(this.report);
   }
-  checktoken() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.token = token;
-      this.decodeToken();
-    } else {
-      this._router.navigate(['/login']);
-    }
-  }
+
+  // checktoken() {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     this.token = token;
+  //     this.decodeToken();
+  //   } else {
+  //     this._router.navigate(['/login']);
+  //   }
+  // }
 
   deleteproductfromcart(Product_id: number) {
-    this.checktoken();
+    this._state.checktoken();
     const headers = new HttpHeaders({ 'x-access-token': this.token })
     return this.http.delete(this.url + '/DeletebyProduct/' + Product_id, { headers });
   }
 
   Getorder() {
-    this.checktoken();
+    this._state.checktoken();
     const headers = new HttpHeaders({ 'x-access-token': this.token })
     return this.http.delete(this.url + '/Orders/', { headers });
   }
 
-
-  // Addtowishlist(Product_id: number) {
-  //   this.checktoken();
-  //   const headers = new HttpHeaders({ 'x-access-token': this.token })
-  //   return this.http.post(this.url + '/Addwishlist', Product_id, { headers });
+  // localAddToCart(data: any) {
+  //   let cartData = [];
+  //   let token = localStorage.getItem('token');
+  //   if (!token) {
+  //     localStorage.setItem('token', JSON.stringify([data]));
+  //     this.cartData.emit([data]);
+  //   } else {
+  //     cartData = JSON.parse(token);
+  //     cartData.push(data);
+  //     localStorage.setItem('localCart', JSON.stringify(cartData));
+  //     this.cartData.emit(cartData);
+  //   }
   // }
 
   addwish(Product_id: number) {
     return this.http.post(this.url + '/wish', Product_id);
+  }
+
+  addtoCart(data: any) {
+    this._state.checktoken();
+    const headers = new HttpHeaders({ 'x-access-token': this._state.token });
+    return this.http.post(this.url + '/AddCart', data, { headers });
   }
 
 }

@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RestService } from 'src/app/services/rest.service';
 import { CartComponent } from '../cart/cart.component';
 import { CartService } from 'src/app/services/cart.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -27,15 +29,28 @@ export class ProductComponent implements OnInit {
   productList: any[] = [];
   pro: any;
 
+  productQuantity: number = 1;
 
   @Input() index = -1;
 
-  constructor(private _rest: RestService, private _cart: CartService) { }
+  constructor(private _rest: RestService,
+    private _cart: CartService,
+    private _wishlist: WishlistService,
+    private _route: ActivatedRoute,
+    private _router: Router) { }
 
   ngOnInit(): void {
     this.getproduct();
     this.getCategory();
     this.getbrand();
+  }
+
+  handleQuantity(val: string) {
+    if (this.productQuantity < 20 && val === 'plus') {
+      this.productQuantity += 1;
+    } else if (this.productQuantity > 1 && val === 'min') {
+      this.productQuantity -= 1;
+    }
   }
 
   getproduct() {
@@ -65,6 +80,18 @@ export class ProductComponent implements OnInit {
       this.AllBrand = data.data;
     }, (err: any) => {
       console.log(err);
+    })
+  }
+
+
+  addToWishlist(Product_id: number) {
+
+    this._wishlist.addToWishlist(Product_id).subscribe((data: any) => {
+      console.log(data);
+      this.Wishlist.push();
+    }, (err: any) => {
+      console.log(err);
+      // this._router.navigate['/login']
     })
   }
 
@@ -115,5 +142,7 @@ export class ProductComponent implements OnInit {
       }
     )
   }
+
+
 
 }

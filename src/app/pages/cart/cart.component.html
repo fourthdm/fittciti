@@ -21,7 +21,17 @@
           <!-- <td style="width: 25%;" >{{item.description}}</td> -->
           <th>{{item.Price}}</th>
           <td>{{item.pricewithdiscount}}</td>
-          <td>{{item.Quantity}}</td>
+          <!-- <td>{{item.Quantity}}</td> -->
+          <td>
+            <div class="quantity-group">
+              <button (click)="handleQuantity('min')">-</button>
+              {{item.Quantity}}
+              <input type="number" value="{{item.Quantity}}" />
+              <button (click)="handleQuantity('plus')">+</button>
+
+            </div>
+          </td>
+          
           <td>{{item.Total}}</td>
           <td><button (click)="removeItem(item)" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
         </tr>
@@ -33,6 +43,7 @@
           <td><strong>Total : &#8377; {{T}}</strong></td>
           <!-- <button (click)="paynow()">Pay <span><strong>Total Price With Discount : ${{grandTotal}}</strong></span> </button> -->
           <td><strong>Total Price With Discount : &#8377; {{grandTotal}} </strong></td>
+          <!-- <td>{{finalTotal}}</td> -->
           <p>You Save your<b> &#8377; {{Savers}} </b></p>
         </tr>
 

@@ -122,5 +122,4 @@ export class MbComponent implements OnInit {
       }
     )
   }
-
 }

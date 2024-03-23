@@ -16,14 +16,16 @@ export class CartComponent implements OnInit {
   public grandTotal !: number;
   public T !: any;
   public Savers !: any;
+  Quantity: number = 1
+  public finalTotal !: any;
 
   constructor(private _cart: CartService, private _route: Router, private _rest: RestService) { }
 
   ngOnInit(): void {
-
     this._cart.getProducts().subscribe((data: any) => {
       console.log('Cart Products : ', data);
       this.products = data;
+      this.finalTotal = this._cart.getFinaltotalPrice();
       this.T = this._cart.Gettotal();
       this.grandTotal = this._cart.getTotalPrice();
       this.Savers = this.T - this.grandTotal;
@@ -53,18 +55,26 @@ export class CartComponent implements OnInit {
   //     alert("The item was not found in the cart")
   //   } 
   // }
-  
+
   deletecartitem() {
 
   }
 
   removeItem(item: any) {
-    this._cart.removeCartItem(item)
+    this._cart.removeproduct(item)
   }
 
   emptycart() {
     this._cart.removeAllCart();
     this._route.navigate(['/product']);
+  }
+
+  handleQuantity(val: string) {
+    if (this.Quantity < 20 && val === 'plus') {
+      this.Quantity += 1;
+    } else if (this.Quantity > 1 && val === 'min') {
+      this.Quantity -= 1;
+    }
   }
 
   paynow() {
@@ -84,7 +94,6 @@ export class CartComponent implements OnInit {
       theme: {
         color: '#'
       },
-
       modal: {
         ondismiss: () => {
           console.log('dismissed')

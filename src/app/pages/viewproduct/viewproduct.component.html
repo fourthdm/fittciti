@@ -164,6 +164,12 @@
                 <p>{{p.discount}}% Discount</p>
                 <p>&#8377; {{p.pricewithdiscount}}</p>
                 <br>
+
+                <div class="quantity-group">
+                    <button (click)="handleQuantity('min')">-</button>
+                    <input type="text" value="{{productQuantity}}" />
+                    <button (click)="handleQuantity('plus')">+</button>
+                </div>
                 <!-- <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                     <button class="btn btn-light" (click)="handlequantity('min')">
                         <h5>-</h5>

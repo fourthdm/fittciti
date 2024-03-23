@@ -22,17 +22,25 @@
                 </label>
                 <br><br>
 
-                <select name="brand_id" id="brand_id" [(ngModel)]="Brand_id" class="form-select" multiple
+                <!-- <select name="brand_id" id="brand_id" [(ngModel)]="Category_id" class="form-select" multiple
+                    aria-label="Multiple select example">
+                    <option selected>All Category</option>
+                    <option *ngFor="let c of AllCategory " [value]="c.Category_id">
+                        {{c.Category_Name}}</option>
+                </select> -->
+                <!-- <br><br><br> -->
+
+                <!-- <select name="brand_id" id="brand_id" [(ngModel)]="Brand_id" class="form-select" multiple
                     aria-label="Multiple select example">
                     <option selected>All Brand</option>
                     <option *ngFor="let b of AllBrand " [value]="b.Brand_id">
                         {{b.Brand_Name}}</option>
-                </select>
+                </select> -->
 
                 <br><br>
 
 
-                <br><br><br>
+                <!-- <br><br><br> -->
                 <label>
                     <button class="btn btn-outline-success" (click)="Filter()">Filter</button>
                 </label>
@@ -42,17 +50,28 @@
                 <div class="container">
 
                     <div class="row">
-                        <ng-container >
+                        <ng-container>
                             <div class="col-lg-4 col-md-6"
                                 *ngFor="let p of productList| paginate: { itemsPerPage: 9, currentPage: pro }, let i=index ">
                                 <div class="container">
                                     <div class="card">
                                         <div class="">
+                                            <!-- <button (click)="addToWishlist(p.id)">Add to Wishlist</button> -->
+                                            <!-- <i *ngIf="liked" (click)="addToWishlist(p.id)">Add to
+                                                Wishlist</i>
+                                            <a *ngIf="!liked" [routerLink]="['/login']">Login to Add to
+                                                Wishlist</a>     -->
+
                                             <div class="text-end">
                                                 <i class="fa-regular fa-heart fa-xl"
                                                     [ngStyle]="{'color':liked ? 'blue' : ''}"
-                                                    (click)="togglelikes(this.index)"></i>
+                                                    (click)="addToWishlist(p.id)"></i>
                                             </div>
+                                            <!-- <div class="text-end">
+                                                <i class="fa-regular fa-heart fa-xl"
+                                                    [ngStyle]="{'color':liked ? 'blue' : ''}"
+                                                    (click)="togglelikes(this.index)"></i>
+                                            </div> -->
 
                                             <a href="" [routerLink]="['/viewproduct',p.id]"> <img [src]="p.image"
                                                     style="width: 100%;" alt=""></a>

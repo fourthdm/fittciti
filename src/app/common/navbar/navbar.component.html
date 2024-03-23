@@ -71,7 +71,7 @@
         </li>
       </ul>
 
-      <div *ngIf="menutype!=='seller'" class="nav-search">
+      <!-- <div *ngIf="menutype!=='seller'" class="nav-search">
         <input type="text" #searchInput (keyup)="searchProduct($event)" (blur)="hideSearch()"
           placeholder="Search Products" />
         <button (click)="submitSearch(searchInput.value)">Search</button>
@@ -80,12 +80,12 @@
             <a (mousedown)="redirectToDetails(item.id)">{{item.name}}</a>
           </li>
         </ul>
-      </div>
+      </div> -->
 
 
       <form class="d-flex" role="search">
-        <input class="form-control me-2" (keyup)="($event)" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <!-- <input class="form-control me-2" (keyup)="($event)" type="search" placeholder="Search" aria-label="Search"> -->
+        <!-- <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button> -->
 
         <div class="dropdown" style="margin-left: 6px;">
           <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
