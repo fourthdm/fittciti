@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { StateService } from './state.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -84,10 +85,22 @@ export class RestService {
     return this.http.delete(this.url + '/DeletebyProduct/' + Product_id, { headers });
   }
 
+  Addorder(data: any) {
+    this._state.checktoken();
+    const headers = new HttpHeaders({ 'x-access-token': this.token });
+    return this.http.post(this.url + '/Adddorder', data, { headers })
+  }
+
   Getorder() {
     this._state.checktoken();
     const headers = new HttpHeaders({ 'x-access-token': this.token })
-    return this.http.delete(this.url + '/Orders/', { headers });
+    return this.http.get(this.url + '/Orders/', { headers });
+  }
+
+  cancelorder(id: number) {
+    this._state.checktoken();
+    const headers = new HttpHeaders({ 'x-access-token': this.token })
+    return this.http.delete(this.url + '/cancelorder/' + id, { headers });
   }
 
   // localAddToCart(data: any) {
@@ -112,6 +125,21 @@ export class RestService {
     this._state.checktoken();
     const headers = new HttpHeaders({ 'x-access-token': this._state.token });
     return this.http.post(this.url + '/AddCart', data, { headers });
+  }
+
+  addToCart(productId: number, quantity: number): Observable<any> {
+    const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
+    this._state.checktoken();
+    const headers = new HttpHeaders().set('x-access-token', this._state.token);
+    const body = { Product_id: productId, Quantity: quantity };
+    return this.http.post<any>(this.url, body, { headers });
+  }
+
+
+  getallcart() {
+    this._state.checktoken();
+    const headers = new HttpHeaders({ 'x-access-token': this._state.token });
+    return this.http.get(this.url + '/Carts', { headers });
   }
 
 }

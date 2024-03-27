@@ -17,8 +17,12 @@ export class OrderComponent implements OnInit {
     this.orders();
   }
 
-  cancelOrder(order_id: any) {
-
+  cancelOrder(orderId: number | undefined) {
+    orderId && this._rest.cancelorder(orderId).subscribe((result) => {
+      if (result) {
+        this.orders();
+      }
+    })
   }
 
   orders() {

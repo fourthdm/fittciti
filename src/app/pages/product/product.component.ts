@@ -33,6 +33,10 @@ export class ProductComponent implements OnInit {
 
   @Input() index = -1;
 
+  @Input() id = 0;
+  @Input() Quantity = 1;
+  cartitem: any[] = [];
+
   constructor(private _rest: RestService,
     private _cart: CartService,
     private _wishlist: WishlistService,
@@ -116,6 +120,23 @@ export class ProductComponent implements OnInit {
 
   addToCart(product: any) {
     this._cart.addtoCart(product);
+  }
+
+
+  ACArt() {
+    const productId = this.id; // Example product ID
+    const quantity = this.Quantity; // Example quantity
+    this._rest.addToCart(productId, quantity).subscribe(
+      response => {
+        // Handle successful response
+        console.log('Product added to cart:', response);
+        this.cartitem.push();
+      },
+      error => {
+        // Handle error
+        console.error('Error adding product to cart:', error);
+      }
+    );
   }
 
   Filter() {

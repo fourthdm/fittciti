@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+declare const google: any;
+
 @Component({
   selector: 'app-testimonials',
   templateUrl: './testimonials.component.html',
@@ -8,3 +10,4 @@ import { Component } from '@angular/core';
 export class TestimonialsComponent {
 
 }
+ 

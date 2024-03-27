@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RestService } from './rest.service';
 import { HttpClient } from '@angular/common/http';
@@ -11,8 +11,10 @@ declare var Razorpay: any;
   providedIn: 'root'
 })
 export class CartService {
+  @Input() id = 0;
+  @Input() Quantity = 1;
 
-  public cartItemList: any = [];
+  public cartItemList: any[] = [];
   public productList = new BehaviorSubject<any>([]);
 
   constructor(private _rest: RestService, private _http: HttpClient,
@@ -52,7 +54,22 @@ export class CartService {
     }
   }
 
-
+  newcart() {
+    const productId = this.id; // Example product ID
+    const quantity = this.Quantity; // Example quantity
+    this._rest.addToCart(productId, quantity).subscribe(
+      response => {
+        // Handle successful response
+        console.log('Product added to cart:', response);
+        this.cartItemList.push(response);
+        this.cartItemList = response.data
+      },
+      error => {
+        // Handle error
+        console.error('Error adding product to cart:', error);
+      }
+    );
+  }
   // get totl price
   getTotalPrice(): number {
     let grandTotal = 0;
@@ -69,7 +86,6 @@ export class CartService {
     })
     return finalTotal;
   }
-
 
   Gettotal(): number {
     let T = 0;
