@@ -13,6 +13,7 @@ declare var Razorpay: any;
 export class CartComponent implements OnInit {
 
   public products: any = [];
+  
   public grandTotal !: number;
   public T !: any;
   public Savers !: any;
@@ -41,6 +42,36 @@ export class CartComponent implements OnInit {
   }
 
 
+  getcarts() {
+    this._rest.getallcart().subscribe((data: any) => {
+      console.log(data);
+      this.products = data.data;
+    }, (err: any) => {
+      console.log(err);
+    })
+  }
+
+  Deletecartss(Cart_id: any) {
+    if (confirm('Are you want to delete the cart')) {
+      this._rest.deletecart(Cart_id).subscribe((data: any) => {
+        console.log(data);
+        this.getcarts();
+      }, (err: any) => {
+        console.log(err);
+      })
+    }
+  }
+
+  removeItem(Product_id: any) {
+    this._rest.deleteproductfromcart(Product_id).subscribe((data: any) => {
+      console.log(data);
+      this.getcarts();
+    }, (err: any) => {
+      console.log(err);
+    })
+  }
+
+
   // delete(productId: number){
   //   let index = this.products.map((e:any)=> e.id).indexOf(productId);
   //   if(index !== -1){
@@ -60,9 +91,9 @@ export class CartComponent implements OnInit {
 
   }
 
-  removeItem(item: any) {
-    this._cart.removeproduct(item)
-  }
+  // removeItem(item: any) {
+  //   this._cart.removeproduct(item)
+  // }
 
   emptycart() {
     this._cart.removeAllCart();

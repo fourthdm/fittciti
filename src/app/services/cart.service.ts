@@ -11,6 +11,9 @@ declare var Razorpay: any;
   providedIn: 'root'
 })
 export class CartService {
+
+
+
   @Input() id = 0;
   @Input() Quantity = 1;
 
@@ -32,6 +35,7 @@ export class CartService {
 
   // add to cart
   addtoCart(product: any) {
+
     this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
     this.getTotalPrice();
@@ -39,37 +43,22 @@ export class CartService {
     console.log(this.cartItemList);
   }
 
+
+
+
   add(product: any) {
-    if (localStorage.getItem('token')) {
-      this._rest.addtoCart(product).subscribe((data: any) => {
-        console.log(data);
-        this.cartItemList.push(data);
-        this.cartItemList = data.data
-      }, (err: any) => {
-        console.log(err);
-      })
-    }
-    else {
-      this._route.navigate(['/login']);
-    }
+    this._rest.addtoCart(product).subscribe((data: any) => {
+      console.log(data);
+      this.cartItemList.push(data);
+      this.cartItemList = data.data
+    }, (err: any) => {
+      console.log(err);
+      // this._route.navigate(['/login']);
+    })
+
   }
 
-  newcart() {
-    const productId = this.id; // Example product ID
-    const quantity = this.Quantity; // Example quantity
-    this._rest.addToCart(productId, quantity).subscribe(
-      response => {
-        // Handle successful response
-        console.log('Product added to cart:', response);
-        this.cartItemList.push(response);
-        this.cartItemList = response.data
-      },
-      error => {
-        // Handle error
-        console.error('Error adding product to cart:', error);
-      }
-    );
-  }
+
   // get totl price
   getTotalPrice(): number {
     let grandTotal = 0;

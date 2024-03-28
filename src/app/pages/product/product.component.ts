@@ -23,9 +23,7 @@ export class ProductComponent implements OnInit {
 
   AllCategory: any[] = [];
   AllBrand: any[] = [];
-
   Wishlist: any[] = [];
-
   productList: any[] = [];
   pro: any;
 
@@ -35,6 +33,7 @@ export class ProductComponent implements OnInit {
 
   @Input() id = 0;
   @Input() Quantity = 1;
+
   cartitem: any[] = [];
 
   constructor(private _rest: RestService,
@@ -122,22 +121,36 @@ export class ProductComponent implements OnInit {
     this._cart.addtoCart(product);
   }
 
-
-  ACArt() {
-    const productId = this.id; // Example product ID
-    const quantity = this.Quantity; // Example quantity
-    this._rest.addToCart(productId, quantity).subscribe(
-      response => {
-        // Handle successful response
-        console.log('Product added to cart:', response);
-        this.cartitem.push();
+  addCart(productData: any) {
+    // Assuming productData contains the necessary information about the product
+    this._rest.addtoCart(productData).subscribe(
+      (response) => {
+        console.log('Product added to cart successfully', response);
+        // Handle success, maybe update UI or show a message
+        this.cartitem.push(response);
       },
-      error => {
-        // Handle error
-        console.error('Error adding product to cart:', error);
+      (error) => {
+        console.error('Error adding product to cart', error);
+        // Handle error, maybe show an error message to the user
       }
     );
   }
+
+  // ACArt() {
+  //   const productId = this.id; // Example product ID
+  //   const quantity = this.Quantity; // Example quantity
+  //   this._rest.addToCart(productId, quantity).subscribe(
+  //     response => {
+  //       // Handle successful response
+  //       console.log('Product added to cart:', response);
+  //       this.cartitem.push();
+  //     },
+  //     error => {
+  //       // Handle error
+  //       console.error('Error adding product to cart:', error);
+  //     }
+  //   );
+  // }
 
   Filter() {
     this._rest.bycategoryandbrand({ Category_id: this.Category_id, Brand_id: this.Brand_id }).subscribe((data: any) =>

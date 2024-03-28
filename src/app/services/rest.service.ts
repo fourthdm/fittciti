@@ -79,27 +79,22 @@ export class RestService {
   //   }
   // }
 
-  deleteproductfromcart(Product_id: number) {
-    this._state.checktoken();
-    const headers = new HttpHeaders({ 'x-access-token': this.token })
-    return this.http.delete(this.url + '/DeletebyProduct/' + Product_id, { headers });
-  }
 
   Addorder(data: any) {
     this._state.checktoken();
-    const headers = new HttpHeaders({ 'x-access-token': this.token });
+    const headers = new HttpHeaders({ 'x-access-token': this._state.token });
     return this.http.post(this.url + '/Adddorder', data, { headers })
   }
 
   Getorder() {
     this._state.checktoken();
-    const headers = new HttpHeaders({ 'x-access-token': this.token })
+    const headers = new HttpHeaders({ 'x-access-token': this._state.token })
     return this.http.get(this.url + '/Orders/', { headers });
   }
 
   cancelorder(id: number) {
     this._state.checktoken();
-    const headers = new HttpHeaders({ 'x-access-token': this.token })
+    const headers = new HttpHeaders({ 'x-access-token': this._state.token })
     return this.http.delete(this.url + '/cancelorder/' + id, { headers });
   }
 
@@ -127,13 +122,25 @@ export class RestService {
     return this.http.post(this.url + '/AddCart', data, { headers });
   }
 
-  addToCart(productId: number, quantity: number): Observable<any> {
-    const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
+  deleteproductfromcart(Product_id: number) {
     this._state.checktoken();
-    const headers = new HttpHeaders().set('x-access-token', this._state.token);
-    const body = { Product_id: productId, Quantity: quantity };
-    return this.http.post<any>(this.url, body, { headers });
+    const headers = new HttpHeaders({ 'x-access-token': this._state.token })
+    return this.http.delete(this.url + '/DeletebyProduct/' + Product_id, { headers });
   }
+
+  deletecart(Cart_id: number) {
+    this._state.checktoken();
+    const headers = new HttpHeaders({ 'x-access-token': this._state.token })
+    return this.http.delete(this.url + '/Emptycart/' + Cart_id, { headers });
+  }
+
+  // addToCart(productId: number, quantity: number): Observable<any> {
+  //   const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
+  //   this._state.checktoken();
+  //   const headers = new HttpHeaders().set('x-access-token', this._state.token);
+  //   const body = { Product_id: productId, Quantity: quantity };
+  //   return this.http.post<any>(this.url, body, { headers });
+  // }
 
 
   getallcart() {

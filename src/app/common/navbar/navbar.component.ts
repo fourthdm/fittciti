@@ -12,11 +12,8 @@ export class NavbarComponent implements OnInit {
 
   menutype: string = 'default';
 
-
-
   public totalItem: number = 0;
   searchResult: any[] = [];
-
 
   constructor(private _cart: CartService, private _route: Router, private _rest: RestService) { }
 
@@ -47,7 +44,10 @@ export class NavbarComponent implements OnInit {
   }
 
 
-  logout() { }
+  logout() {
+    localStorage.removeItem('token');
+    this._route.navigate(['/login']);
+  }
 
   searchProduct(query: KeyboardEvent) {
     if (query) {
