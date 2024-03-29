@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/cart.service';
 import { RestService } from 'src/app/services/rest.service';
 import { StateService } from 'src/app/services/state.service';
@@ -15,7 +16,15 @@ export class CheckoutComponent implements OnInit {
   public grandTotal !: number;
   public T !: any;
   public Savers !: any;
-  constructor(private _rest: RestService, private _cart: CartService, private _state: StateService) { }
+
+  orderform: FormGroup;
+
+  constructor(private _rest: RestService, private _cart: CartService, private _state: StateService) {
+    this.orderform = new FormGroup({
+      Shipping_address: new FormControl('', [Validators.required]),
+      Order_date: new FormControl('', [Validators.required])
+    })
+  }
 
   ngOnInit(): void {
     this._cart.getProducts().subscribe((data: any) => {
@@ -28,8 +37,6 @@ export class CheckoutComponent implements OnInit {
       console.log(err)
     })
   }
-
-
 
   paynow() {
     const razorpayoption = {
@@ -49,7 +56,7 @@ export class CheckoutComponent implements OnInit {
         color: '#'
       },
 
-      modal: {
+      modal: { 
         ondismiss: () => {
           console.log('dismissed')
         }

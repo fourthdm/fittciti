@@ -25,7 +25,6 @@ export class CartService {
 
   getProducts() {
     return this.productList.asObservable();
-
   }
 
   setProduct(product: any) {
@@ -43,20 +42,16 @@ export class CartService {
     console.log(this.cartItemList);
   }
 
-
-
-
-  add(product: any) {
-    this._rest.addtoCart(product).subscribe((data: any) => {
-      console.log(data);
-      this.cartItemList.push(data);
-      this.cartItemList = data.data
-    }, (err: any) => {
-      console.log(err);
-      // this._route.navigate(['/login']);
-    })
-
-  }
+  // add(data: any) {
+  //   this._rest.addtoCart(data).subscribe((data: any) => {
+  //     console.log(data);
+  //     this.cartItemList.push(data);
+  //     this.cartItemList = data.data
+  //   }, (err: any) => {
+  //     console.log(err);
+  //     // this._route.navigate(['/login']);
+  //   })
+  // }
 
 
   // get totl price

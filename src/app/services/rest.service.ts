@@ -116,9 +116,10 @@ export class RestService {
     return this.http.post(this.url + '/wish', Product_id);
   }
 
-  addtoCart(data: any) {
+  addtoCart(Product_id:number,Quantity:number) {
     this._state.checktoken();
     const headers = new HttpHeaders({ 'x-access-token': this._state.token });
+    const data = {Product_id:Product_id,Quantity:Quantity};
     return this.http.post(this.url + '/AddCart', data, { headers });
   }
 

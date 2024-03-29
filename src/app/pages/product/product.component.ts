@@ -32,7 +32,9 @@ export class ProductComponent implements OnInit {
   @Input() index = -1;
 
   @Input() id = 0;
-  @Input() Quantity = 1;
+  Quantity = 1;
+
+  Product_id: number = 0;
 
   cartitem: any[] = [];
 
@@ -121,9 +123,9 @@ export class ProductComponent implements OnInit {
     this._cart.addtoCart(product);
   }
 
-  addCart(productData: any) {
+  addCart() {
     // Assuming productData contains the necessary information about the product
-    this._rest.addtoCart(productData).subscribe(
+    this._rest.addtoCart(this.Product_id, this.Quantity).subscribe(
       (response) => {
         console.log('Product added to cart successfully', response);
         // Handle success, maybe update UI or show a message
