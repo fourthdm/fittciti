@@ -21,9 +21,10 @@
           <!-- <td style="width: 25%;" >{{item.description}}</td> -->
           <th>{{item.Price}}</th>
           <td>{{item.pricewithdiscount}}</td>
-          <!-- <td>{{item.Quantity}}</td> -->
+          <!-- <td><input type="number" [(ngModel)]="products.quantity" ()="updatequantity (products,$event.target.value as number)"></td> -->
           <td>
             <div class="quantity-group">
+              
               <button (click)="handleQuantity('min')">-</button>
               {{item.Quantity}}
               <input type="number" value="{{item.Quantity}}" />
@@ -31,7 +32,7 @@
 
             </div>
           </td>
-          
+          <td>{{ products.price * products.quantity }}</td>
           <td>{{item.Total}}</td>
           <td><button (click)="removeItem(item)" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
         </tr>

@@ -19,6 +19,7 @@ export class ViewproductComponent implements OnInit {
   ngOnInit(): void {
     this.getproduct();
   }
+
   handleQuantity(val: string) {
     if (this.productQuantity < 20 && val === 'plus') {
       this.productQuantity += 1;
@@ -26,14 +27,15 @@ export class ViewproductComponent implements OnInit {
       this.productQuantity -= 1;
     }
   }
+
   getproduct() {
-    const id = this._activeroute.snapshot.paramMap.get('id');
-    console.log(id);
-    id && this._rest.productwithmain(id).subscribe((data: any) => {
-      this.productList = data.data;
-    }, (err: any) => {
-      console.log(err);
-    })
+      const id = this._activeroute.snapshot.paramMap.get('id');
+      console.log(id);
+      id && this._rest.productwithmain(id).subscribe((data: any) => {
+        this.productList = data.data;
+      }, (err: any) => {
+        console.log(err);
+      })
 
     this.productList.forEach((a: any) => {
       Object.assign(a, { quantity: 1, total: a.pricewithdiscount });

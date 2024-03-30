@@ -13,7 +13,10 @@ declare var Razorpay: any;
 export class CartComponent implements OnInit {
 
   public products: any = [];
-  
+  cartItemList: any[] = [];
+
+  Total: number = 0;
+
   public grandTotal !: number;
   public T !: any;
   public Savers !: any;
@@ -41,6 +44,22 @@ export class CartComponent implements OnInit {
     // })
   }
 
+  // updatequantity(product: any, newquantity: number) {
+  //   product.Quantity = newquantity;
+  //   this.recalculatetotal();
+  // }
+
+  // recalculatetotal() {
+  //   this.Total = 0;
+  //   this.products.forEach((product: any) => {
+  //     this.Total += (product.price * product.quantity);
+  //   })
+  // }
+
+  // addtocart(product: any) {
+  //   this.products.push(product);
+  //   this.recalculatetotal();
+  // }
 
   getcarts() {
     this._rest.getallcart().subscribe((data: any) => {
